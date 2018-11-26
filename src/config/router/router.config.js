@@ -16,10 +16,10 @@ import createBrowserHistory from 'history/createBrowserHistory';
 
 const customHistory = createBrowserHistory();
 
-export default class Router extends Component {
+export default class MainRouter extends Component {
     render(){
         return (
-            <HashRouter  history={customHistory}>
+            <HashRouter history = {customHistory}>
                 <Switch>
                     <Route exact path="/" component={ SignIn }/>
                     <Route component={ Layout }  path="/demo"/>

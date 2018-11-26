@@ -82,7 +82,7 @@ function SignIn(props) {
                         color="primary"
                         className={classes.submit}
                         onClick={()=>{
-                         props.history.push('/demo')
+                         props.history.push('/demo/index')
                         }}
                     >
                         Sign in

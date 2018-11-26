@@ -19,11 +19,11 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import {Srouter} from '../../config'
-
+import {NavLink} from 'react-router-dom'
+import Icon from '@material-ui/core/Icon';
 
 const drawerWidth = 240;
 
@@ -67,6 +67,29 @@ const styles = theme => ({
 class Layout extends React.Component {
     state = {
         mobileOpen: false,
+        NavRouter:[
+                {
+                    name:'Layout',
+                    router:"/demo/index",
+                    icon:"3d_rotation"
+                },
+                {
+                    name:'Icons',
+                    router:"/demo/icons",
+                    icon:"ac_unit"
+                },
+                {
+                    name:'Breakpoints',
+                    router:"/demo/Breakpoints/MrTAO",
+                    icon:"access_alarm"
+                },
+                {
+                    name:'Drafts',
+                    router:"/demo/star",
+                    icon:"album"
+                }
+        ]
+
     };
 
     handleDrawerToggle = () => {
@@ -74,7 +97,8 @@ class Layout extends React.Component {
     };
 
     render() {
-        const { classes, theme } = this.props;
+        const { classes, theme } = this.props,
+               { NavRouter } = this.state;
 
         const drawer = (
             <div>
@@ -87,22 +111,23 @@ class Layout extends React.Component {
                 </div>
                 <Divider />
                 <List>
-                    {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-                        <ListItem button key={text}>
-                            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                            <ListItemText style={{padding:0}} primary={text} />
-                        </ListItem>
-                    ))}
+                    {
+                        NavRouter.map((item, index) => (
+                        <NavLink key={item.name} to={item.router} activeClassName="selected">
+                            <ListItem button>
+                                <ListItemIcon>
+                                    <Icon className={classes.icon} color="action">
+                                        {item.icon}
+                                    </Icon>
+                                </ListItemIcon>
+                                <ListItemText style={{padding:0}} primary={item.name} />
+                            </ListItem>
+                        </NavLink>
+                    ))
+                    }
                 </List>
                 <Divider />
-                <List>
-                    {['All mail', 'Trash', 'Spam'].map((text, index) => (
-                        <ListItem button key={text}>
-                            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <ExitToAppIcon />}</ListItemIcon>
-                            <ListItemText style={{padding:0}} primary={text} />
-                        </ListItem>
-                    ))}
-                </List>
+
             </div>
         );
 
@@ -157,7 +182,8 @@ class Layout extends React.Component {
                 </nav>
                 <main className={classes.content}>
                     <div className={classes.toolbar} />
-                    <Srouter></Srouter>
+
+                         <Srouter></Srouter>
                 </main>
             </div>
         );

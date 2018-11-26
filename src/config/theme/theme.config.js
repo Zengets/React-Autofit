@@ -53,7 +53,7 @@ const theme = createMuiTheme({
             fontSize:"1"
         },
         subtitle1:{ //新闻提要
-
+            color:"#fff"
         },
         subtitle2:{ //新闻提要
 
@@ -87,7 +87,13 @@ const theme = createMuiTheme({
             dark: '#002884',
             contrastText: '#fff'
         }, // Purple and green play nicely together.
-        secondary: { main: '#11cb5f' }, // This is just green.A700 as hex.
+        secondary: {
+            main: purple[200],
+            light: '#757ce8',
+            dark: '#002884',
+            contrastText: '#fff'
+
+        }, // This is just green.A700 as hex.
     },
     mixins:{
         toolbar:{
